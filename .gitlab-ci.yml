@@ -1,0 +1,10 @@
+stages:
+  - test
+
+run_tests:
+  image: node:alpine
+  before_script:
+    - npm install
+  stage: test
+  script:
+    - npm test
