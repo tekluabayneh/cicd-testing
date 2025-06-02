@@ -11,10 +11,11 @@ function add(a, b) {
 app.get("/health", (req, res) => {
   res.json({ status: "OK", timestamp: Date.now() });
 });
-
-app.listen(port, () => {
-  console.log(`CI/CD test app listening at http://localhost:${port}`);
-});
+if (require.main == module) {
+  app.listen(port, () => {
+    console.log(`CI/CD test app listening at http://localhost:${port}`);
+  });
+}
 
 // Export add function for tests
 module.exports = { add };
