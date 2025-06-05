@@ -32,7 +32,7 @@ build_image:
 
   # Login to Docker registry (Docker Hub or other)
   before_script:
-    - docker login -u $docker_variable -p $registry_password
+    - docker login -u $docker_variable
 
   # Build and push Docker image
   script:
