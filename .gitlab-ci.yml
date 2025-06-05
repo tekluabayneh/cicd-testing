@@ -1,16 +1,40 @@
+# Define global variables
+variables:
+  IMAGE_NAME: tekluman/cicd
+  IMAGE_TAG: latest
+
+# Define the stages of the pipeline
 stages:
   - test
+  - build
 
+# Job 1: Run tests
 run_tests:
   image: node:alpine
+  stage: test
   before_script:
     - npm install
-  stage: test
   script:
-    - npm test
+    - npm test # Run your test suite
 
+# Job 2: Build and push Docker image
 build_image:
+  image: docker:latest # Docker client image
+  stage: build
+
+  # Enable Docker-in-Docker service
+  services:
+    - docker:dind # Required to run Docker inside GitLab CI
+
+  # Secure Docker-in-Docker
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+
+  # Login to Docker registry (Docker Hub or other)
+  before_script:
+    - docker login -u $docker_variable -p $registry_password
+
+  # Build and push Docker image
   script:
-    - docker build . 
-    - 
-    
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG .
+    - docker push $IMAGE_NAME:$IMAGE_TAG
