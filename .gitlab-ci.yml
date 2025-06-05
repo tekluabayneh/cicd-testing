@@ -8,4 +8,9 @@ run_tests:
   stage: test
   script:
     - npm test
-    # end
+
+build_image:
+  script:
+    - docker build . 
+    - 
+    

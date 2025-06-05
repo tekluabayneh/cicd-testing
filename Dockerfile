@@ -13,5 +13,7 @@ RUN npm install
 # ✅ Copy the rest of the project
 COPY . .
 
+EXPOSE 3000
+
 # ✅ Define the command to run the app
 CMD ["node", "server.js"]
