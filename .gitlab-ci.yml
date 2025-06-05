@@ -4,8 +4,9 @@ stages:
 run_tests:
   image: node:alpine
   before_script:
+    - sudo apt update
     - npm install
   stage: test
   script:
     - npm test
-   # end 
+    # end
