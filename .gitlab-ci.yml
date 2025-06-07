@@ -45,3 +45,4 @@ build_image:
 
     script: 
      - echo "what you just faked the deploy"
+     # - ssh -o StrictHostkeyChecking=no -i $SSH_KEY root@160.35.223.117
