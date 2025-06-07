@@ -42,3 +42,6 @@ build_image:
 
     deploy_dev:
      stage: deploy 
+
+    script: 
+     - echo "what you just faked the deploy"
